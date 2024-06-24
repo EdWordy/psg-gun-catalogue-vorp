@@ -218,9 +218,13 @@ RegisterNUICallback('purchaseweapon', Purchase)
 RegisterNUICallback('close', CloseUI)
 
 RegisterNUICallback('playSoundPageLeft', function()
-    PlaySoundFrontend("NAV_LEFT", "Ledger_Sounds", true, 0);
+    PlaySoundFrontend("NAV_LEFT", "Ledger_Sounds", true, 0)
     end)
     
 RegisterNUICallback('playSoundPageRight', function()
-    PlaySoundFrontend("NAV_RIGHT", "Ledger_Sounds", true, 0);
+    PlaySoundFrontend("NAV_RIGHT", "Ledger_Sounds", true, 0)
+end)
+
+RegisterNUICallback('playSoundPurchase', function()
+    PlaySoundFrontend("PURCHASE", "Ledger_Sounds", true, 0)
 end)

@@ -7,8 +7,8 @@ local weapons = {
     [6] = { ['weapon'] = 'WEAPON_PISTOL_SEMIAUTO', ["PRICE"] = 120, ['label'] = 'Semi-Auto Pistol', ['AMMOlabel'] = 'ammopistolnormal', ["AMMOPRICE"] = 1},
     [7] = { ['weapon'] = 'WEAPON_PISTOL_MAUSER', ["PRICE"] = 100, ['label'] = 'Mauser Pistol', ['AMMOlabel'] = 'ammopistolnormal', ["AMMOPRICE"] = 1},
     
-    [8] = { ['weapon'] = 'WEAPON_REPEATER_CARBINE', ["PRICE"] = 45, ['label'] = 'Carbine Repeater', ['AMMOlabel'] = 'ammorepeaternormal', ["AMMOPRICE"] = 1},
-    [9] = { ['weapon'] = 'WEAPON_REPEATER_WINCHESTER', ["PRICE"] = 120, ['label'] = 'Lancaster Repeater', ['AMMOlabel'] = 'ammorepeaternormal', ["AMMOPRICE"] = 2}, 
+    [8] = { ['weapon'] = 'WEAPON_REPEATER_CARBINE', ["PRICE"] = 45, ['label'] = 'Carbine Repeater', ['AMMOlabel'] = 'ammorepeaternormal', ["AMMOPRICE"] = 2},
+    [9] = { ['weapon'] = 'WEAPON_REPEATER_LANCASTER', ["PRICE"] = 120, ['label'] = 'Lancaster Repeater', ['AMMOlabel'] = 'ammorepeaternormal', ["AMMOPRICE"] = 2}, 
     [10] = { ['weapon'] = 'WEAPON_REPEATER_EVANS', ["PRICE"] = 170, ['label'] = 'Evans Repeater', ['AMMOlabel'] = 'ammorepeaternormal', ["AMMOPRICE"] = 2},
     
     [11] = { ['weapon'] = 'WEAPON_RIFLE_VARMINT', ["PRICE"] = 35, ['label'] = 'Varmint Rifle', ['AMMOlabel'] = 'ammovarmint', ["AMMOPRICE"] = 1,},
@@ -52,7 +52,7 @@ AddEventHandler('gunCatalogue:Purchase', function(data, code)
 
         if code == securecode then  
             for k, v in pairs(weapons) do
-                print (Character.money)
+            if v.weapon == data.weapon then
                 local money = Character.money
                 if data.isammo == 0 then
                     if money >= v.PRICE then
@@ -68,8 +68,6 @@ AddEventHandler('gunCatalogue:Purchase', function(data, code)
                         local components = { ["nothing"] = 0 }  
                         exports.vorp_inventory:createWeapon(source, v.weapon, ammo, components)
                         Core.NotifyRightTip(source, "You have purchased a " .. v.label, 4000)
-                        PlaySoundFrontend("PURCHASE", "Ledger_Sounds", true, 0)
-
                     else
                         Core.NotifyRight(source, "You do not have enough money", "Purchase Failed", "DANGER")
                     end
@@ -85,26 +83,26 @@ AddEventHandler('gunCatalogue:Purchase', function(data, code)
                         Character.removeCurrency(0, v.AMMOPRICE)
                         TriggerClientEvent('gunCatalogue:giveammo', User, v.weapon, securecode)
                         exports.vorp_inventory:addItem(source, v.AMMOlabel, 1)
-                        Core.NotifyRightTip(User, "You have purchased " .. v.AMMOlabel, 4000)
-                        PlaySoundFrontend("PURCHASE", "Ledger_Sounds", true, 0)
+                        Core.NotifyRightTip(source, "You have purchased " .. v.AMMOlabel, 4000)
                     else
                         Core.NotifyRight(source, "You do not have enough money", "Purchase Failed", "DANGER")
                     end
                     break
                 end
             end
+            end
         else
             Core.NotifyRight(User, "Invalid code", "Purchase Failed", "DANGER")
         end
     else
-        print("VORP.getUser returned nil for source: " .. tostring(User))
+        print("getUser returned nil for source: " .. tostring(source))
     end
 end)
 
 RegisterServerEvent('gunCatalogue:getCode')
 AddEventHandler('gunCatalogue:getCode', function()
     local _source = source
-    TriggerClientEvent('gunCatalogue:SendCode', _source, securecode)
+    TriggerClientEvent('gunCatalogue:SendCode', source, securecode)
 end)
 
 -- Print contents of `tbl`, with indentation.
@@ -122,8 +120,4 @@ function tprint (tbl, indent)
             print(formatting .. v)
         end
     end
-end
-
-function PlaySoundFrontend(soundId, audioName, audioRef, p3)
-    Citizen.InvokeNative(0x67C540AA08E4A6F5, soundId, audioName, audioRef, p3);  -- play sound frontend
 end

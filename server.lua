@@ -123,3 +123,7 @@ function tprint (tbl, indent)
         end
     end
 end
+
+function PlaySoundFrontend(soundId, audioName, audioRef, p3)
+    Citizen.InvokeNative(0x67C540AA08E4A6F5, soundId, audioName, audioRef, p3);  -- play sound frontend
+end

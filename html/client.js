@@ -1,6 +1,5 @@
 
 
-
 var data
 var book = document.getElementsByClassName("flipbook")[0]
 var frontimage = document.getElementById("frontimage")
@@ -384,21 +383,21 @@ $(document).keydown(function(e) {
 
     switch (e.keyCode) {
         case previous:
-        PlaySoundFrontend("NAV_LEFT", "Ledger_Sounds", true, 0)
+        Post('https://psg-gun-catalogue/playSoundPageLeft')
         $('.flipbook').turn('previous');
         break;
 
         case next:
-        PlaySoundFrontend("NAV_RIGHT", "Ledger_Sounds", true, 0)
+        Post('https://psg-gun-catalogue/playSoundPageRight')
         $('.flipbook').turn('next');            
         break;
         
         case close:
-            Post('http://psg-gun-catalogue/close')
+            Post('https://psg-gun-catalogue/close')
         break;
 
         case close2:
-            Post('http://psg-gun-catalogue/close')
+            Post('https://psg-gun-catalogue/close')
         break;
     }
 
@@ -413,7 +412,7 @@ function Buy(weapon, isammo) {
     } else {
         d.isammo = isammo;
     }
-    Post('http://psg-gun-catalogue/purchaseweapon', d)
+    Post('https://psg-gun-catalogue/purchaseweapon', d)
 }
 
 Post = function(url, data) {

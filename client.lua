@@ -216,3 +216,11 @@ end
 RegisterCommand('closeui', function(...) doClose = true; end)
 RegisterNUICallback('purchaseweapon', Purchase)
 RegisterNUICallback('close', CloseUI)
+
+RegisterNUICallback('playSoundPageLeft', function()
+    PlaySoundFrontend("NAV_LEFT", "Ledger_Sounds", true, 0);
+    end)
+    
+RegisterNUICallback('playSoundPageRight', function()
+    PlaySoundFrontend("NAV_RIGHT", "Ledger_Sounds", true, 0);
+end)

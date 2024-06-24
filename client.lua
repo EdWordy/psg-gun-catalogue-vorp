@@ -196,7 +196,7 @@ Citizen.CreateThread(function(...)
 end)
 
 RegisterNetEvent('gunCatalogue:giveammo')
-AddEventHandler('gunCatalogue:giveammo', function(type,code1)
+AddEventHandler('gunCatalogue:giveammo', function(type, code1)
     TriggerServerEvent('gunCatalogue:getCode')
     Wait(200)
     if code == code1 then
@@ -210,7 +210,7 @@ end)
 function Purchase(data)
     TriggerServerEvent('gunCatalogue:getCode')
     Wait(200)
-    TriggerServerEvent('gunCatalogue:Purchase',data,code)
+    TriggerServerEvent('gunCatalogue:Purchase', data, code)
 end
 
 RegisterCommand('closeui', function(...) doClose = true; end)

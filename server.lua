@@ -1,4 +1,6 @@
+-- Initialize VORP API
 local VORP = exports.vorp_core:vorpAPI()
+local VORP_Banking = exports.vorp_banking:vorpBankingAPI()
 
 local weapons = {
     [1] = { ['weapon'] = 'WEAPON_REVOLVER_CATTLEMAN', ["PRICE"] = 10, ['label'] = 'Cattleman Revolver', ['AMMOlabel'] = 'revolver ammo', ["AMMOPRICE"] = 1},
@@ -44,47 +46,53 @@ local securecode = math.random(111111,9999999)
 RegisterNetEvent('gunCatalogue:Purchase')
 AddEventHandler('gunCatalogue:Purchase', function(data, code)
     local _source = source
-    local xPlayer = VORP.getUser(_source).getUsedCharacter
-    local userMoney = xPlayer.money
+    local User = VORP.getUser(_source)
+    
+    if User then
+        local Character = User.getUsedCharacter
+        local userMoney = VORP_Banking.getBalance(_source) -- Get balance from banking
 
-    if code == securecode then
-        for k, v in pairs(weapons) do
-            if v.weapon == data.weapon then
-                if userMoney >= v.PRICE then
-                    xPlayer.removeCurrency(0, v.PRICE) -- 0 for cash
-                    exports.vorp_inventory:addItem(_source, v.weapon, 1)
-                    TriggerClientEvent('vorp:TipRight', _source, "You have purchased a " .. v.label, 4000)
-                else
-                    TriggerClientEvent('vorp:NotifyRight', _source, "You do not have enough money", "Purchase Failed", "DANGER")
+        if code == securecode then
+            for k, v in pairs(weapons) do
+                if v.weapon == data.weapon then
+                    if userMoney >= v.PRICE then
+                        VORP_Banking.removeMoney(_source, v.PRICE) -- Remove money using banking
+                        exports.vorp_inventory:addItem(_source, v.weapon, 1)
+                        VORP.TipRight(_source, "You have purchased a " .. v.label, 4000)
+                    else
+                        VORP.NotifyRight(_source, "You do not have enough money", "Purchase Failed", "DANGER")
+                    end
+                    break
+                elseif v.AMMOlabel == data.weapon then
+                    if userMoney >= v.AMMOPRICE then
+                        VORP_Banking.removeMoney(_source, v.AMMOPRICE) -- Remove money using banking
+                        TriggerClientEvent('gunCatalogue:giveammo', _source, v.weapon, securecode)
+                        exports.vorp_inventory:addItem(_source, v.AMMOlabel, 1)
+                        VORP.TipRight(_source, "You have purchased " .. v.AMMOlabel, 4000)
+                    else
+                        VORP.NotifyRight(_source, "You do not have enough money", "Purchase Failed", "DANGER")
+                    end
+                    break
                 end
-                break
-            elseif v.AMMOlabel == data.weapon then
-                if userMoney >= v.AMMOPRICE then
-                    xPlayer.removeCurrency(0, v.AMMOPRICE)
-                    TriggerClientEvent('gunCatalogue:giveammo', _source, v.weapon, "some_secure_code")
-                    exports.vorp_inventory:addItem(_source, v.AMMOlabel, 1)
-                    TriggerClientEvent('vorp:TipRight', _source, "You have purchased " .. v.AMMOlabel, 4000)
-                else
-                    TriggerClientEvent('vorp:NotifyRight', _source, "You do not have enough money", "Purchase Failed", "DANGER")
-                end
-                break
             end
+        else
+            VORP.NotifyRight(_source, "Invalid code", "Purchase Failed", "DANGER")
         end
     else
-        TriggerClientEvent('vorp:NotifyRight', _source, "Invalid code", "Purchase Failed", "DANGER")
+        print("VORP.getUser returned nil for source: " .. tostring(_source))
     end
 end)
 
 RegisterServerEvent('gunCatalogue:getCode')
 AddEventHandler('gunCatalogue:getCode', function()
     local _source = source
-    TriggerClientEvent('gunCatalogue:SendCode', _source, "some_secure_code")
+    TriggerClientEvent('gunCatalogue:SendCode', _source, securecode)
 end)
 
 local function registerUsableItem(itemName, weaponName)
     exports.vorp_inventory:registerUsableItem(itemName, function(data)
         local _source = data.source
-        TriggerClientEvent('gunCatalogue:giveammo', _source, weaponName, "some_secure_code")
+        TriggerClientEvent('gunCatalogue:giveammo', _source, weaponName, securecode)
         exports.vorp_inventory:subItem(_source, itemName, 1)
     end)
 end

@@ -7,12 +7,16 @@ local prop = {}
 local code = nil
 local store
 
-
 local gunstores = {
+    -- 
     [1] = {x = 2947.246, y = 1319.698, z = 44.88, h = 72.38},
+    --
     [2] = {x = 2716.972, y = -1286.010, z = 49.686, h = 40.09},
+    --
     [3] = {x = -281.255, y = 780.033, z = 119.553, h = 5.86}, 
+    -- 
     [4] = {x = 1323.141, y = -1322.304, z = 77.939, h = 343.25},   
+    -- 
     [5] = {x = -5507.428, y = -2964.109, z = -0.578, h = 115.78},
 }
 
@@ -123,10 +127,9 @@ function StorePrompt()
         PromptSetVisible(store, 1)
         PromptSetHoldMode(store, 1)
         PromptRegisterEnd(store)
-        PromptSetGroup(store,0,1)       
+        PromptSetGroup(store, 0, 1)       
     end)
 end
-
 
 Citizen.CreateThread(function () 
     local book = GetHashKey("mp001_s_mp_catalogue01x")
@@ -139,7 +142,7 @@ Citizen.CreateThread(function ()
     for i=1,#catalogue do
         local blip = Citizen.InvokeNative(0x554D9D53F696D002, 1664425300, catalogue[i].x, catalogue[i].y, catalogue[i].z)
         SetBlipSprite(blip, -145868367, 1)
-        Citizen.InvokeNative(0x9CB1A1623062F402, blip, "Gun store")
+        Citizen.InvokeNative(0x9CB1A1623062F402, blip, "Gun Store")
     end
 
     for i=1,#catalogue do
@@ -148,8 +151,6 @@ Citizen.CreateThread(function ()
         FreezeEntityPosition(prop[i], true)
     end
 end)
-
-
 
 function startup()
     isOpen = false
@@ -171,7 +172,7 @@ end
 
 function CloseUI()
     isOpen = false
-    SetNuiFocus(isOpen,isOpen)
+    SetNuiFocus(isOpen, isOpen)
     active = false
     FreezeEntityPosition(PlayerPedId(), false)
     SendNUIMessage({
@@ -199,8 +200,8 @@ AddEventHandler('gunCatalogue:giveammo', function(type,code1)
     TriggerServerEvent('gunCatalogue:getCode')
     Wait(200)
     if code == code1 then
-        local ammotype = GetPedAmmoTypeFromWeapon(PlayerPedId(), type) -- dont even ask how or why this works.
-        local ammo = GetPedAmmoByType(PlayerPedId(), ammotype) -- If you have a better way please do a push request and save me from this shit -steady
+        local ammotype = GetPedAmmoTypeFromWeapon(PlayerPedId(), type)
+        local ammo = GetPedAmmoByType(PlayerPedId(), ammotype) 
         local ammo = ammo + 10
         SetPedAmmo(PlayerPedId(), GetHashKey(type), ammo)
     end
@@ -212,9 +213,6 @@ function Purchase(data)
     TriggerServerEvent('gunCatalogue:Purchase',data,code)
 end
 
-
 RegisterCommand('closeui', function(...) doClose = true; end)
 RegisterNUICallback('purchaseweapon', Purchase)
 RegisterNUICallback('close', CloseUI)
-
-

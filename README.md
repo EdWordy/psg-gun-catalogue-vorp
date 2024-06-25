@@ -10,6 +10,8 @@ An interactive catalogue for purchasing weapons similar to the one found in RDO.
 
 - Configurable global weapon and ammo prices
 
+- Uses `BASE_WEAPON_NAMES` and `baseammonames` for ease of use
+
 - More to come!
 
 ## INSTALLATION

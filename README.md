@@ -8,6 +8,14 @@ An interactive catalogue for purchasing weapons similar to the one found in RDO.
 
 - ...
 
+## INSTALLATION
+
+- ToDO
+
+## DEPENDENCIES
+
+- TODO
+
 ## THANKS
 
 >Forked from Erratic and Steadys gun_catalogue

@@ -43,4 +43,5 @@ files {
 dependencies {
   'vorp_core',
   'vorp_inventory',
+  'vorp_weaponsv2'
 }

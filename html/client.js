@@ -1,5 +1,3 @@
-
-
 var data
 var book = document.getElementsByClassName("flipbook")[0]
 var frontimage = document.getElementById("frontimage")

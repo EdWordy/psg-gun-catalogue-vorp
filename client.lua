@@ -2,7 +2,6 @@ local isOpen = false
 local doOpen = false
 local doClose = true
 local active = false
-local currentweapons = {}
 local prop = {}
 local code = nil
 local store
@@ -28,42 +27,8 @@ local catalogue = {
     [5] = {x = -5507.428, y = -2964.109, z = -0.578, h = 115.78},     
 }
 
-local weapons = {
-    'WEAPON_REVOLVER_CATTLEMAN',
-    'WEAPON_REVOLVER_DOUBLEACTION',
-    'WEAPON_REVOLVER_LEMAT',
-    'WEAPON_REVOLVER_SCHOFIELD',
-    'WEAPON_PISTOL_VOLCANIC',
-    'WEAPON_PISTOL_SEMIAUTO',
-    'WEAPON_PISTOL_MAUSER',
-    'WEAPON_REPEATER_CARBINE',
-    'WEAPON_REPEATER_LANCASTER',
-    'WEAPON_REPEATER_EVANS',
-    'WEAPON_RIFLE_VARMINT',
-    'WEAPON_RIFLE_SPRINGFIELD',
-    'WEAPON_RIFLE_BOLTACTION',
-    'WEAPON_SNIPERRIFLE_ROLLINGBLOCK',
-    'WEAPON_SNIPERRIFLE_CARCANO',
-    'WEAPON_SHOTGUN_SAWEDOFF',
-    'WEAPON_SHOTGUN_DOUBLEBARREL',
-    'WEAPON_SHOTGUN_PUMP',
-    'WEAPON_SHOTGUN_REPEATING',
-    'WEAPON_SHOTGUN_SEMIAUTO', 
-    'WEAPON_BOW',
-    'WEAPON_LASSO',
-    'WEAPON_MELEE_BROKEN_SWORD',
-    'WEAPON_MELEE_LANTERN',
-    'WEAPON_MELEE_HATCHET',
-    'WEAPON_MELEE_KNIFE',
-    'WEAPON_THROWN_THROWING_KNIVES',
-    'WEAPON_MELEE_MACHETE',
-    'WEAPON_THROWN_TOMAHAWK',
-    'WEAPON_THROWN_DYNAMITE',
-    'WEAPON_THROWN_MOLOTOV',
-}
-
-RegisterNetEvent('gunCatalogue:SendCode')
-AddEventHandler('gunCatalogue:SendCode', function(code1)
+RegisterNetEvent('gunCatalogue:sendCode')
+AddEventHandler('gunCatalogue:sendCode', function(code1)
     code = code1
 end)
 
@@ -195,8 +160,8 @@ Citizen.CreateThread(function(...)
     end
 end)
 
-RegisterNetEvent('gunCatalogue:giveammo')
-AddEventHandler('gunCatalogue:giveammo', function(type, code1)
+RegisterNetEvent('gunCatalogue:giveAammo')
+AddEventHandler('gunCatalogue:giveAmmo', function(type, code1)
     TriggerServerEvent('gunCatalogue:getCode')
     Wait(200)
     if code == code1 then

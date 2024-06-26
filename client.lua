@@ -32,13 +32,6 @@ AddEventHandler('gunCatalogue:sendCode', function(code1)
     code = code1
 end)
 
-RegisterCommand('tp', function(source,args)
-    SetEntityCoords(PlayerPedId(), 1296.21, -6816.04, 60.82, 0,0,0, false)
-    Citizen.InvokeNative(0x74E2261D2A66849A,true)
-    Citizen.InvokeNative(0xE8770EE02AEE45C2,1)
-    Citizen.InvokeNative(0xA657EC9DBC6CC900,GetHashKey("guarma"))
-end, restricted)
-
 Citizen.CreateThread(function()
     StorePrompt()
     while true do

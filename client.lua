@@ -160,7 +160,7 @@ Citizen.CreateThread(function(...)
     end
 end)
 
-RegisterNetEvent('gunCatalogue:giveAammo')
+RegisterNetEvent('gunCatalogue:giveAmmo')
 AddEventHandler('gunCatalogue:giveAmmo', function(type, code1)
     TriggerServerEvent('gunCatalogue:getCode')
     Wait(200)

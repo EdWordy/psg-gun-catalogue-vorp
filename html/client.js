@@ -411,7 +411,6 @@ function Buy(weapon, isammo) {
         d.isammo = isammo;
     }
     Post('https://psg-gun-catalogue/purchaseweapon', d)
-    Post('https://psg-gun-catalogue/playSoundPurchase')
 }
 
 Post = function(url, data) {

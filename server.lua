@@ -37,16 +37,17 @@ AddEventHandler('gunCatalogue:Purchase', function(data, code)
                 elseif data.isammo == 1 then
                     if money >= v.ammoprice then
 
-                        local canCarry = exports.vorp_inventory:canCarryItem(source, v.ammolabel, 1)
+                        local canCarry = exports.vorp_inventory:canCarryItem(source, v.ammo, 1)
                         if not canCarry then
                             return Core.NotifyRightTip(source, "Can't carry any more items!", 3000)
                         end
 
                         if v.ammo ~= 'none' then
                             Character.removeCurrency(0, v.ammoprice)
-                            TriggerClientEvent('gunCatalogue:giveAmmo', User, v.weapon, securecode)
+                            TriggerClientEvent('gunCatalogue:giveAmmo', source, v.weapon, securecode)
                             exports.vorp_inventory:addItem(source, v.ammo, 1)
                             Core.NotifyRightTip(source, "You have purchased " .. v.ammolabel, 4000)
+                            TriggerClientEvent('gunCatalogue:playSoundPurchase', source)
                         else
                             Core.NotifyRight(source, "This weapon has no ammo", "Purchase Failed", "DANGER")
                         end
@@ -58,7 +59,7 @@ AddEventHandler('gunCatalogue:Purchase', function(data, code)
             end
             end
         else
-            Core.NotifyRight(User, "ERROR: Invalid code", "Purchase Failed", "DANGER")
+            Core.NotifyRight(source, "ERROR: Invalid code", "Purchase Failed", "DANGER")
         end
     else
         print("ERROR: getUser returned nil for source: " .. tostring(source))

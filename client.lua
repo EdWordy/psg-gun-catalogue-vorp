@@ -190,6 +190,7 @@ RegisterNUICallback('playSoundPageRight', function()
     PlaySoundFrontend("NAV_RIGHT", "Ledger_Sounds", true, 0)
 end)
 
-RegisterNUICallback('playSoundPurchase', function()
+RegisterNetEvent('gunCatalogue:playSoundPurchase')
+AddEventHandler('gunCatalogue:playSoundPurchase', function()
     PlaySoundFrontend("PURCHASE", "Ledger_Sounds", true, 0)
 end)

@@ -4,6 +4,9 @@ game 'rdr3'
 
 rdr3_warning 'I acknowledge that this is a prerelease build of RedM, and I am aware my resources *will* become incompatible once RedM ships.'
 
+author 'PSG @Mercenary'
+desc 'PSG Gun Catalogue is a weapons catalogue similar to the one found in RDO.'
+
 shared_script {
   'config.lua' 
 }

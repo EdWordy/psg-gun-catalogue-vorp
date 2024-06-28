@@ -74,7 +74,8 @@ end)
 
 -- catalogue thread
 
-Citizen.CreateThread(function () 
+Citizen.CreateThread(function ()
+    local blips = {}
     local book = GetHashKey("mp001_s_mp_catalogue01x")
     local pcoords = GetEntityCoords(PlayerPedId())
     RequestModel(book)
@@ -85,18 +86,23 @@ Citizen.CreateThread(function ()
         -- make blip
         local blip = Citizen.InvokeNative(0x554D9D53F696D002, 1664425300, Config.storeConfig[i].location.x, Config.storeConfig[i].location.y, Config.storeConfig[i].location.z)
         SetBlipSprite(blip, -145868367, 1)
-        -- store close check
-        if IsStoreClosed(Config.storeConfig[i]) == true then
-            BlipAddModifier(blip, 'BLIP_MODIFIER_MP_COLOR_10')
-        elseif IsStoreClosed(Config.storeConfig[i]) == false then
-            BlipRemoveModifier(blip, 0)
-        end
         Citizen.InvokeNative(0x9CB1A1623062F402, blip, "Gun Store")
-    end
-    for i=1, #Config.storeConfig do
+        table.insert(blips, blip)
+        Wait(100)
         prop[i] = CreateObjectNoOffset(book, Config.storeConfig[i].location.x, Config.storeConfig[i].location.y, Config.storeConfig[i].location.z, false, false, false, false)
         SetEntityHeading(prop[i], Config.storeConfig[i].location.h)
         FreezeEntityPosition(prop[i], true)
+    end
+    while true do
+        Citizen.Wait(1)
+        for i=1, #Config.storeConfig do
+            -- store close check
+            if IsStoreClosed(Config.storeConfig[i]) == true then
+                BlipAddModifier(blips[i], 'BLIP_MODIFIER_MP_COLOR_10')
+            else
+                BlipAddModifier(blips[i], 'BLIP_MODIFIER_MP_COLOR_32')
+            end
+        end
     end
 end)
 

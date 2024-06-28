@@ -85,10 +85,10 @@ Citizen.CreateThread(function ()
         -- make blip
         local blip = Citizen.InvokeNative(0x554D9D53F696D002, 1664425300, Config.storeConfig[i].location.x, Config.storeConfig[i].location.y, Config.storeConfig[i].location.z)
         SetBlipSprite(blip, -145868367, 1)
-         -- store close check
-         if IsStoreClosed(Config.storeConfig[i]) == true then
-            BlipAddModifier(blip, 'BLIP_MODIFIER_MP_COLOR_32')
-        else
+        -- store close check
+        if IsStoreClosed(Config.storeConfig[i]) == true then
+            BlipAddModifier(blip, 'BLIP_MODIFIER_MP_COLOR_10')
+        elseif IsStoreClosed(Config.storeConfig[i]) == false then
             BlipRemoveModifier(blip, 0)
         end
         Citizen.InvokeNative(0x9CB1A1623062F402, blip, "Gun Store")
@@ -194,7 +194,7 @@ function IsStoreClosed(storeConfig)
         elseif hour >= storeConfig.storeOpen then
             return false
         end
-    else
+    elseif Config.useStoreHours == false then
         return false
     end
 end

@@ -1,11 +1,18 @@
--- do not touch this
+-- SERVER MODULE
+----------------
+
+-- do not touch this code
+
 local securecode = math.random(111111,9999999)
+
+-- setup
 
 local VORPcore = exports.vorp_core:GetCore()
 
+-- events
+
 RegisterNetEvent('gunCatalogue:Purchase')
 AddEventHandler('gunCatalogue:Purchase', function(data, code)
-
     local User = VORPcore.getUser(source)
 
     if User then
@@ -66,8 +73,10 @@ AddEventHandler('gunCatalogue:getCode', function()
     TriggerClientEvent('gunCatalogue:sendCode', source, securecode)
 end)
 
--- Print contents of `tbl`, with indentation.
--- `indent` sets the initial level of indentation.
+-- helpers
+
+-- Print contents of tbl, with indentation.
+-- indent sets the initial level of indentation.
 function tprint (tbl, indent)
     if not indent then indent = 0 end
     for k, v in pairs(tbl) do

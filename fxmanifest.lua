@@ -8,16 +8,16 @@ author 'PSG @Mercenary'
 desc 'PSG Gun Catalogue is a weapons catalogue similar to the one found in RDO.'
 
 shared_script {
-  'config.lua' 
+  'config.lua'  
 }
 
 client_scripts {
-  'client.lua'
+  'client/client.lua'
 }
 
 server_scripts {
   '@mysql-async/lib/MySQL.lua',
-  'server.lua',
+  'server/server.lua',
 }
 
 ui_page 'html/index.html'

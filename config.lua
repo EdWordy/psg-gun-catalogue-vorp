@@ -45,8 +45,8 @@ Config = {
         -- annesburg
         [1] = {
             location = { x = 2947.246, y = 1319.698, z = 44.88, h = 72.38 },
-            storeClose = 20,
-            storeOpen = 7,
+            storeClose = 20,            -- ignored if useStoreHours is false
+            storeOpen = 7,              -- ignored if useStoreHours is false
         },
         -- saint denis
         [2] = {
@@ -56,7 +56,7 @@ Config = {
         },
          -- valentine
         [3] = {
-            location = { x = -281.255, y = 780.033, z = 119.553, h = 5.86 }, 
+            location = { x = -281.255, y = 780.033, z = 119.553, h = 5.86 },
             storeClose = 20,
             storeOpen = 7,
         }, 

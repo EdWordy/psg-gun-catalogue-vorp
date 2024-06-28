@@ -41,8 +41,11 @@ An interactive catalogue for purchasing weapons similar to the one found in RDO.
 ## CONTROLS
 
 `<-` Flip Left
+
 `->` Flip Right
+
 `ESC` Close
+
 `E` Open
 
 ## THANKS

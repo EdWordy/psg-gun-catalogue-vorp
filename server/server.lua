@@ -46,7 +46,6 @@ AddEventHandler('gunCatalogue:Purchase', function(data, code)
                         end
                         if v.ammo ~= 'none' then
                             Character.removeCurrency(0, v.ammoprice)
-                            TriggerClientEvent('gunCatalogue:giveAmmo', source, v.weapon, securecode)
                             exports.vorp_inventory:addItem(source, v.ammo, 1)
                             VORPcore.NotifyRightTip(source, "You have purchased " .. v.ammolabel, 4000)
                             TriggerClientEvent('gunCatalogue:playSoundPurchase', source)

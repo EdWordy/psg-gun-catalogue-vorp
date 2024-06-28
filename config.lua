@@ -63,7 +63,7 @@ Config = {
          -- rhodes
         [4] = {
             location = { x = 1323.141, y = -1322.304, z = 77.939, h = 343.25 },
-            storeClose = 20,
+            storeClose = 8,
             storeOpen = 7,
         },
         -- tumbleweed

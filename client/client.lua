@@ -16,18 +16,6 @@ AddEventHandler('gunCatalogue:sendCode', function(code1)
     code = code1
 end)
 
-RegisterNetEvent('gunCatalogue:giveAmmo')
-AddEventHandler('gunCatalogue:giveAmmo', function(type, code1)
-    TriggerServerEvent('gunCatalogue:getCode')
-    Wait(200)
-    if code == code1 then
-        local ammotype = GetPedAmmoTypeFromWeapon(PlayerPedId(), type)
-        local ammo = GetPedAmmoByType(PlayerPedId(), ammotype) 
-        local ammo = ammo + 10
-        SetPedAmmo(PlayerPedId(), GetHashKey(type), ammo)
-    end
-end)
-
 AddEventHandler('onResourceStop', function(resource)
     if resource == GetCurrentResourceName() then
         PromptSetEnabled(store, false)
@@ -93,17 +81,19 @@ Citizen.CreateThread(function ()
     while not HasModelLoaded(book) do
         Citizen.Wait(0)
     end
-    for i=1,#Config.storeConfig do
+    for i=1, #Config.storeConfig do
+        -- make blip
         local blip = Citizen.InvokeNative(0x554D9D53F696D002, 1664425300, Config.storeConfig[i].location.x, Config.storeConfig[i].location.y, Config.storeConfig[i].location.z)
         SetBlipSprite(blip, -145868367, 1)
-        if IsStoreClosed(Config.storeConfig[i]) then
-            BlipAddModifier(blip, 0xEF1F5079)
+         -- store close check
+         if IsStoreClosed(Config.storeConfig[i]) == true then
+            BlipAddModifier(blip, 'BLIP_MODIFIER_MP_COLOR_32')
         else
             BlipRemoveModifier(blip, 0)
         end
         Citizen.InvokeNative(0x9CB1A1623062F402, blip, "Gun Store")
     end
-    for i=1,#Config.storeConfig do
+    for i=1, #Config.storeConfig do
         prop[i] = CreateObjectNoOffset(book, Config.storeConfig[i].location.x, Config.storeConfig[i].location.y, Config.storeConfig[i].location.z, false, false, false, false)
         SetEntityHeading(prop[i], Config.storeConfig[i].location.h)
         FreezeEntityPosition(prop[i], true)
@@ -112,7 +102,7 @@ end)
 
 -- ui thread
 
-Citizen.CreateThread(function(...)
+Citizen.CreateThread(function(...)  
     while true do
         Citizen.Wait(5)
         if doOpen then

@@ -34,6 +34,7 @@ AddEventHandler('gunCatalogue:Purchase', function(data, code)
                         local components = { ["nothing"] = 0 }  
                         exports.vorp_inventory:createWeapon(source, v.weapon, ammo, components)
                         VORPcore.NotifyRightTip(source, "You have purchased a " .. v.label, 4000)
+                        TriggerClientEvent('gunCatalogue:playSoundPurchase', source)
                     else
                         VORPcore.NotifyRightTip(source, "You do not have enough money", 3000)
                     end

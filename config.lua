@@ -28,25 +28,25 @@ Config = {
         [19] = { ['weapon'] = 'WEAPON_SHOTGUN_REPEATING', ["price"] = 170, ['label'] = 'Repeating Shotgun', ['ammo'] = 'ammoshotgunnormal', ['ammolabel'] = 'Shotgun Ammo', ["ammoprice"] = 2},
         [20] = { ['weapon'] = 'WEAPON_SHOTGUN_SEMIAUTO', ["price"] = 180, ['label'] = 'Semi-Auto Shotgun', ['ammo'] = 'ammoshotgunnormal', ['ammolabel'] = 'Shotgun Ammo', ["ammoprice"] = 2},
         -- misc
-        [21] = { ['weapon'] = 'WEAPON_BOW', ["price"] = 35, ['label'] = 'Bow', ['ammo'] = 'arrow', ['ammolabel'] = 'Arrow', ["ammoprice"] = 1, ["AMMOCOUNT"] = 20 },
+        [21] = { ['weapon'] = 'WEAPON_BOW', ["price"] = 35, ['label'] = 'Bow', ['ammo'] = 'ammoarrownormal', ['ammolabel'] = 'aSrrow', ["ammoprice"] = 1, ["AMMOCOUNT"] = 20 },
         [22] = { ['weapon'] = 'WEAPON_LASSO', ["price"] = 10, ['label'] = 'Lasso', ['ammo'] = 'none', ['ammolabel'] = 'none', ["ammoprice"] = 0},
         [23] = { ['weapon'] = 'WEAPON_MELEE_BROKEN_SWORD', ["price"] = 5, ['label'] = 'Broken Sword', ['ammo'] = 'none', ['ammolabel'] = 'none', ["ammoprice"] = 0},
         [24] = { ['weapon'] = 'WEAPON_MELEE_LANTERN', ["price"] = 8, ['label'] = 'Lantern', ['ammo'] = 'none', ['ammolabel'] = 'none', ["ammoprice"] = 0},
         [25] = { ['weapon'] = 'WEAPON_MELEE_HATCHET', ["price"] = 10, ['label'] = 'Hatchet', ['ammo'] = 'none', ['ammolabel'] = 'none', ["ammoprice"] = 0},
         [26] = { ['weapon'] = 'WEAPON_MELEE_KNIFE', ["price"] = 7, ['label'] = 'Knife', ['ammo'] = 'none', ['ammolabel'] = 'none', ["ammoprice"] = 0},
-        [27] = { ['weapon'] = 'WEAPON_THROWN_THROWING_KNIVES', ["price"] = 15, ['label'] = 'Throwing Knives', ['ammo'] = 'throwing knives', ['ammolabel'] = 'throwing knives', ["ammoprice"] = 5},
+        [27] = { ['weapon'] = 'WEAPON_THROWN_THROWING_KNIVES', ["price"] = 15, ['label'] = 'Throwing Knives', ['ammo'] = 'ammoknives', ['ammolabel'] = 'throwing knives', ["ammoprice"] = 5},
         [28] = { ['weapon'] = 'WEAPON_MELEE_MACHETE', ["price"] = 12, ['label'] = 'Machete', ['ammo'] = 'none', ['ammolabel'] = 'none', ["ammoprice"] = 0},
-        [29] = { ['weapon'] = 'WEAPON_THROWN_TOMAHAWK', ["price"] = 20, ['label'] = 'Tomahawk', ['ammo'] = 'tomahawk', ['ammolabel'] = 'tomahawk', ["ammoprice"] = 5},
-        [30] = { ['weapon'] = 'WEAPON_THROWN_DYNAMITE', ["price"] = 30, ['label'] = 'Dynamite', ['ammo'] = 'dynamite', ['ammolabel'] = 'dynamite', ["ammoprice"] = 10},
-        [31] = { ['weapon'] = 'WEAPON_THROWN_MOLOTOV', ["price"] = 25, ['label'] = 'Molotov', ['ammo'] = 'molotov', ['ammolabel'] = 'molotov', ["ammoprice"] = 8},
+        [29] = { ['weapon'] = 'WEAPON_THROWN_TOMAHAWK', ["price"] = 20, ['label'] = 'Tomahawk', ['ammo'] = 'ammotomahawk', ['ammolabel'] = 'tomahawk', ["ammoprice"] = 5},
+        [30] = { ['weapon'] = 'WEAPON_THROWN_DYNAMITE', ["price"] = 30, ['label'] = 'Dynamite', ['ammo'] = 'ammodynamite', ['ammolabel'] = 'dynamite', ["ammoprice"] = 10},
+        [31] = { ['weapon'] = 'WEAPON_THROWN_MOLOTOV', ["price"] = 25, ['label'] = 'Molotov', ['ammo'] = 'ammomolotov', ['ammolabel'] = 'molotov', ["ammoprice"] = 8},
     },
     -- you can add new stores here
     storeConfig = {
         -- annesburg
         [1] = {
             location = { x = 2947.246, y = 1319.698, z = 44.88, h = 72.38 },
-            storeClose = 20,            -- ignored if useStoreHours is false
-            storeOpen = 7,              -- ignored if useStoreHours is false
+            storeClose = 20,
+            storeOpen = 7,
         },
         -- saint denis
         [2] = {
@@ -56,7 +56,7 @@ Config = {
         },
          -- valentine
         [3] = {
-            location = { x = -281.255, y = 780.033, z = 119.553, h = 5.86 },
+            location = { x = -281.255, y = 780.033, z = 119.553, h = 5.86 }, 
             storeClose = 20,
             storeOpen = 7,
         }, 

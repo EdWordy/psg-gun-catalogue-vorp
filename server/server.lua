@@ -18,7 +18,7 @@ AddEventHandler('gunCatalogue:Purchase', function(data, code)
     if User then
         local Character = User.getUsedCharacter
 
-        if code == securecode then  
+        if code == securecode then
             for k, v in pairs(Config.weapons) do
             if v.weapon == data.weapon then
                 local money = Character.money

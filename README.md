@@ -1,4 +1,4 @@
-# psg-gun-catalogue
+# psg-gun-catalogue-vorp
 
 An interactive catalogue for purchasing weapons similar to the one found in RDO.
 

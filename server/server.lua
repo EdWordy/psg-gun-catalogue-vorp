@@ -5,6 +5,10 @@
 
 local securecode = math.random(111111, 9999999)
 
+-- setup
+
+local VORPcore = exports.vorp_core:GetCore()
+
 -- events
 
 RegisterNetEvent('gunCatalogue:Purchase')

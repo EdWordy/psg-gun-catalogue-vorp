@@ -381,21 +381,21 @@ $(document).keydown(function(e) {
 
     switch (e.keyCode) {
         case previous:
-        Post('https://psg-gun-catalogue/playSoundPageLeft')
+        Post('https://psg-gun-catalogue-vorp/playSoundPageLeft')
         $('.flipbook').turn('previous');
         break;
 
         case next:
-        Post('https://psg-gun-catalogue/playSoundPageRight')
+        Post('https://psg-gun-catalogue-vorp/playSoundPageRight')
         $('.flipbook').turn('next');            
         break;
         
         case close:
-            Post('https://psg-gun-catalogue/close')
+            Post('https://psg-gun-catalogue-vorp/close')
         break;
 
         case close2:
-            Post('https://psg-gun-catalogue/close')
+            Post('https://psg-gun-catalogue-vorp/close')
         break;
     }
 
@@ -410,7 +410,7 @@ function Buy(weapon, isammo) {
     } else {
         d.isammo = isammo;
     }
-    Post('https://psg-gun-catalogue/purchaseweapon', d)
+    Post('https://psg-gun-catalogue-vorp/purchaseweapon', d)
 }
 
 Post = function(url, data) {

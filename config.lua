@@ -74,5 +74,5 @@ Config = {
         }
     },
     -- additional settings
-    useStoreHours = false
+    useStoreHours = false,
 }

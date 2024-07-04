@@ -20,7 +20,7 @@ An interactive catalogue for purchasing weapons similar to the one found in RDO.
 
 - Place in an appropriate folder in `resources` (ie `[ ThirdParty ]`)
 
-- add `ensure psg-gun-catalogue` to your `server.cfg` below both dependencies (don't rename the folder as this will break the mod)
+- add `ensure psg-gun-catalogue-vorp` to your `server.cfg` below both dependencies (don't rename the folder as this will break the mod)
 
 - Disable any other gun stores that you have (such as the ones found in vorp_weaponsv2, just delete the contents of the store config)
 

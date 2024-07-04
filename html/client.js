@@ -147,7 +147,7 @@ window.addEventListener('message', function(event) {
             },
             {   /* 4 */
                 content:"<div class=\"ProductPurchaseButtons__buttons__14Q7z\">  <div class=\"ProductPurchaseButtons__button__1Vwwn\" tabindex=\"0\">         <button class=\"Button__btn__1bc-t Button__black__h0BRc\" data-ui-name=\"buyNow\" onclick=\"Buy('WEAPON_REVOLVER_DOUBLEACTION')\" type=\"button\">             <span class=\"Button__text__2C2ug\">$20.00 Buy</span>         </button>     </div></div><br><div class=\"ProductPurchaseButtons__buttons__14Q7z\">  <br>     <div class=\"ProductPurchaseButtons__button__ammo\" tabindex=\"0\">         <button class=\"Button__btn__1bc-t Button__black__h0BRc\" data-ui-name=\"buyNow\" onclick=\"Buy('WEAPON_REVOLVER_DOUBLEACTION', 1)\"type=\"button\">             <span class=\"Button__text__2C2ug\" id=\"cattermanammo\">$1 Buy ammo</span>         </button>     </div>  <div class=\"ProductPurchaseButtons__button__back\" tabindex=\"0\">         <button class=\"Button__btn__1bc-t Button__black__h0BRc\" data-ui-name=\"back\" onclick=\"index(2)\"type=\"button\">             <span class=\"Button__text__2C2ug\" id=\"back\">Back to index</span>         </button>     </div></div>",
-                background:'https://github.com/EdWordy/psg-catalogue-images/blob/main/catalogue/Doubleaction_Revolver.png?raw=true',
+                background:'https://github.com/EdWordy/psg-catalogue-images/blob/main/catalogue/DoubleAction_Revolver.png?raw=true',
                 backgroundColor:"",
                 color:"",
             },

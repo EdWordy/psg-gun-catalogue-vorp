@@ -113,7 +113,6 @@ Citizen.CreateThread(function(...)
         Citizen.Wait(5)
         if doOpen then
             doOpen = false
-            TriggerEvent("vorp:Tip", "Use <- and -> to change pages and ESC to close", 4000)
             OpenUI()
         elseif doClose then
             doClose = false
@@ -153,6 +152,7 @@ function OpenUI()
         type = "OpenBookGui",
         value = true,
     })
+    TriggerEvent("vorp:Tip", "Use <- and -> to change pages and ESC to close", 4000)
 end
 
 function CloseUI()
